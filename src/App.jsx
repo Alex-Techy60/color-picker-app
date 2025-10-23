@@ -1,5 +1,4 @@
 import { useState } from "react";
-import "./App.css";
 
 function App() {
   const [bgColor, setBgColor] = useState("bg-gray-900");
@@ -19,13 +18,20 @@ function App() {
   ];
 
   return (
-    <div className={`main-container ${bgColor}`}>
-      <div className="bottom-section">
-        <div className="color-name-box">
-          <p className="color-name-text">Color Name: {colorName}</p>
+    <div
+      className={`w-full h-screen flex flex-col justify-end items-center transition-all duration-700 ${bgColor}`}
+    >
+      {/* Bottom section container */}
+      <div className="w-full flex flex-col items-center gap-4 pb-8">
+        {/* Color name box */}
+        <div className="px-6 py-3 bg-white/30 rounded-xl backdrop-blur-md shadow-lg">
+          <p className="text-lg font-semibold text-white drop-shadow-sm">
+            Color Name: {colorName}
+          </p>
         </div>
 
-        <div className="palette-box">
+        {/* Color palette box */}
+        <div className="flex gap-4 p-4 bg-white/25 rounded-2xl backdrop-blur-md shadow-md">
           {colors.map((color, idx) => (
             <button
               key={idx}
@@ -33,13 +39,14 @@ function App() {
                 setBgColor(color.class);
                 setColorName(color.name);
               }}
-              className={`color-btn ${color.class}`}
+              className={`${color.class} w-10 h-10 rounded-full border-2 border-white shadow-md cursor-pointer hover:scale-110 transition-all`}
             ></button>
           ))}
         </div>
 
-        <p className="footer">
-          Made with ❤️ by <span>Alex McDominey</span>
+        {/* Footer */}
+        <p className="text-white/90 text-sm mt-2 bg-black/25 px-4 py-2 rounded-full backdrop-blur-md">
+          Made with ❤️ by <span className="font-semibold">Alex McDominey</span>
         </p>
       </div>
     </div>
